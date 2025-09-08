@@ -1,18 +1,23 @@
 #include <iostream>
-#include <cmath>
 #include <fstream>
+#include <cstring>
 
 using namespace std;
 
-// TODO: Define Point struct if not given
-// struct Point {
-// };
 
-void print_point_rotation(double x_before, double y_before,
-                          double theta, double x_after, double y_after) {
-    cout << "Before rotation: (x=" << x_before << ", y=" << y_before << ")\n";
-    cout << "After rotation (θ=" << theta << " rad): "
-         << "(x=" << x_after << ", y=" << y_after << ")\n";
+struct Sensor {
+    int id;
+    double temperature;
+    double voltage;
+    char status[20]; 
+};
+
+void print_sensor(int index, int id, double temperature, double voltage, const char* status) {
+    cout << "Sensor[" << index << "]: "
+         << "id=" << id << ", "
+         << "temperature=" << temperature << ", "
+         << "voltage=" << voltage << ", "
+         << "status=" << status << "\n";
 }
 
 int main(int argc, char* argv[]) {
@@ -27,17 +32,28 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    // TODO: Declare point, pivot, and angle variables
+    int num_sensors;
+    input >> num_sensors;
+
+    const int MAX_SENSORS = 10;
 
 
-    // TODO: Read input from file: x, y, theta, px, py
+    Sensor sensors[MAX_SENSORS];
 
+   
+    for (int i = 0; i < num_sensors; i++) {
+        input >> sensors[i].id
+              >> sensors[i].temperature
+              >> sensors[i].voltage;
+        input >> sensors[i].status;
+    }
 
-    // TODO: Compute rotated coordinates around pivot
+   
+    Sensor* ptr = sensors;  
 
-
-    // TODO: Print rotated point
-
+    for (int i = 0; i < num_sensors; i++) {
+        print_sensor(i, ptr->id, ptr->temperature, ptr->voltage, ptr->status);
+        ptr++;  
 
     return 0;
 }
