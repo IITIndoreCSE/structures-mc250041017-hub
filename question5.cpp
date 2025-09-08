@@ -4,12 +4,12 @@
 
 using namespace std;
 
-
+// Define Sensor struct
 struct Sensor {
     int id;
     double temperature;
     double voltage;
-    char status[20]; 
+    char status[20]; // Fixed-size array for status string
 };
 
 void print_sensor(int index, int id, double temperature, double voltage, const char* status) {
@@ -37,10 +37,10 @@ int main(int argc, char* argv[]) {
 
     const int MAX_SENSORS = 10;
 
-
+    // Create an array of Sensor structs
     Sensor sensors[MAX_SENSORS];
 
-   
+    // Read sensor data from input
     for (int i = 0; i < num_sensors; i++) {
         input >> sensors[i].id
               >> sensors[i].temperature
@@ -48,12 +48,13 @@ int main(int argc, char* argv[]) {
         input >> sensors[i].status;
     }
 
-   
-    Sensor* ptr = sensors;  
+    // Iterate using a pointer and print sensor data
+    Sensor* ptr = sensors;  // Pointer to the first sensor
 
     for (int i = 0; i < num_sensors; i++) {
         print_sensor(i, ptr->id, ptr->temperature, ptr->voltage, ptr->status);
-        ptr++;  
+        ptr++;  // Move the pointer to the next sensor
+    }
 
     return 0;
 }
